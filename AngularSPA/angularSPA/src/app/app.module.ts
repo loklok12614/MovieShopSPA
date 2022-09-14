@@ -12,6 +12,8 @@ import { MoviesComponent } from './Public/movies.component';
 import { GenresComponent } from './Public/genres.component';
 
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http'
     NgbModule,
     CoreModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    RouterLink
   ],
   providers: [],
   bootstrap: [AppComponent]

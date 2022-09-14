@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../Core/Layout/header.component';
 import { FooterComponent } from '../Core/Layout/footer.component';
+import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -11,7 +13,9 @@ import { FooterComponent } from '../Core/Layout/footer.component';
     FooterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    NgbModule
   ],
   exports: [
     HeaderComponent,

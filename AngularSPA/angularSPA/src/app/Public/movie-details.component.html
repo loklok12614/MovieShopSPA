@@ -1,1 +1,274 @@
-<p>movie-details works!</p>
+<div class="">
+    <!-- <partial name="_MovieDetailsBanner" model="@Model" class="mb-2"/> -->
+    <div class="">
+        <div class="movie-details-banner-background position-absolute" style="background-image: url({{movieDetails.backdropUrl}})">
+        </div>
+        <div class="movie-details position-relative">
+            <div class="row d-flex flex-wrap">
+                <div class="col-12 col-md-4 text-center text-md-end">
+                    <img src="{{movieDetails.posterUrl}}" class="image-fluid" alt="{{movieDetails.title}}" title="{{movieDetails.title}}" height="320px"/>
+                </div>
+            
+                <div class="col-12 col-md-6 text-start text-white px-5 py-1 d-none d-md-block">
+                    <h3>{{movieDetails.title}}</h3>
+                    
+                    <p class="text-muted" style="font-size: 12px">{{movieDetails.tagline}}</p>
+                    
+                    <div class="d-flex justify-content-between text-muted mb-2">
+                        <div class="align-content-center">{{movieDetails.runTime}} m | {{movieDetails.releaseDate | date:"mediumDate"}}</div>
+                        <div class="align-content-center">
+                            <!-- @foreach (var genre in @Model.Genres)
+                            {
+                                <span class="badge rounded-pill bg-secondary">
+                                    @genre.Name
+                                </span>
+                            } -->
+                            <span class="badge rounded-pill bg-secondary me-1" *ngFor="let genre of movieDetails.genres">
+                                {{genre.name}}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="badge bg-success mb-2">{{movieDetails.rating}}</div>
+                    
+                    <div class="fs-6">
+                        {{movieDetails.overview}}
+                    </div>
+                </div>
+            
+                <div class="col-12 col-md-2 text-center px-2 pt-5 d-none d-md-block">
+                    <button type="button" (click)="open(reviewModal)" class="w-100 btn btn-sm btn-outline-secondary bg-link text-decoration-none text-white mb-4 py-0">
+                        <i class="fa-regular fa-pen-to-square"></i> REVIEW
+                    </button>
+
+                    <button type="button" (click)="open(buyModal)" class="w-100 btn btn-sm bg-light mb-4 py-0">
+                        BUY ${{movieDetails.price | number: "1.2-2"}}
+                    </button>
+                    
+                    <!-- @{
+                        if (movieFavorited)
+                        {
+                            <form asp-controller="User" asp-action="RemoveFavoriteMovie" asp-route-movieId="@Model.Id" asp-route-userId="@currentUser.UserId">
+                                <button type="submit" class="w-100 btn btn-sm btn-outline-secondary bg-link text-decoration-none text-white mb-4 py-0">
+                                    <i class="fa-solid fa-heart"></i> FAVORITE
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-controller="User" asp-action="FavoriteMovie" asp-route-movieId="@Model.Id" asp-route-userId="@currentUser.UserId">
+                                <button type="submit" class="w-100 btn btn-sm btn-outline-secondary bg-link text-decoration-none text-white mb-4 py-0">
+                                    <i class="fa-regular fa-heart"></i> FAVORITE
+                                </button>
+                            </form>
+                        }
+                    } -->
+                    
+                    <!-- @{
+                        if (moviePurchased)
+                        {
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#buyModal" class="w-100 btn btn-sm bg-light mb-4 py-0">
+                                <i class="fa-solid fa-play"></i> PLAY
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#buyModal" class="w-100 btn btn-sm bg-light mb-4 py-0">
+                                BUY $@Model.Price
+                            </button>
+                        }
+                    } -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="w-100 text-start text-dark px-5 py-1 d-md-none">
+            <h3>{{movieDetails.title}}</h3>
+                        
+            <p class="text-muted" style="font-size: 12px">{{movieDetails.tagline}}</p>
+                        
+            <div class="d-flex justify-content-between text-muted mb-2">
+                <div class="align-content-center">{{movieDetails.runTime}} m | {{movieDetails.releaseDate | date:"mediumDate"}}</div>
+                <div class="align-content-center">
+                    <span class="badge rounded-pill bg-secondary me-1" *ngFor="let genre of movieDetails.genres">
+                        {{genre.name}}
+                    </span>
+                </div>
+            </div>
+                        
+            <div class="badge bg-success mb-2">{{movieDetails.rating}}</div>
+                        
+            <div class="fs-6">
+                {{movieDetails.overview}}
+            </div>
+        </div>
+                
+        <div class="w-100 text-center px-2 pt-5 d-md-none">
+            <button type="button" (click)="open(reviewModal)" class="w-100 btn btn-outline-secondary bg-link text-dark text-decoration-none mb-4 py-0">
+                <i class="fa-regular fa-pen-to-square"></i> REVIEW
+            </button>
+
+            <button type="button" (click)="open(buyModal)" class="w-100 btn bg-dark text-white mb-4 py-0">
+                BUY ${{movieDetails.price | number: "1.2-2"}}
+            </button>
+            
+            <!-- @{
+                if (movieFavorited)
+                {
+                    <form asp-controller="User" asp-action="RemoveFavoriteMovie" asp-route-movieId="@Model.Id" asp-route-userId="@currentUser.UserId">
+                        <button type="submit" class="w-100 btn btn-outline-secondary bg-link text-dark text-decoration-none mb-4 py-0">
+                            <i class="fa-solid fa-heart"></i> FAVORITE
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <form asp-controller="User" asp-action="FavoriteMovie" asp-route-movieId="@Model.Id" asp-route-userId="@currentUser.UserId">
+                        <button type="submit" class="w-100 btn btn-outline-secondary bg-link text-dark text-decoration-none mb-4 py-0">
+                            <i class="fa-regular fa-heart"></i> FAVORITE
+                        </button>
+                    </form>
+                }
+            } -->
+            
+            <!-- @{
+                if (moviePurchased)
+                {
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#buyModal" class="w-100 btn bg-dark text-white mb-4 py-0">
+                        <i class="fa-solid fa-play"></i> PLAY
+                    </button>
+                }
+                else
+                {
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#buyModal" class="w-100 btn bg-dark text-white mb-4 py-0">
+                        BUY $@Model.Price
+                    </button>
+                }
+            } -->
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12 col-md-4 bg-light">
+            <!-- Movie Facts  -->
+            <div class="">
+                <h5>MOVIE FACTS</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-light">
+                        <i class="fa-solid fa-calendar-days"></i> Release Date
+                        <span class="badge rounded-pill bg-secondary">
+                            {{movieDetails.releaseDate | date:"mediumDate"}}
+                        </span>
+                    </li>
+                    <li class="list-group-item bg-light">
+                        <i class="fa-solid fa-hourglass-half"></i> Run Time
+                        <span class="badge rounded-pill bg-secondary">
+                            {{movieDetails.runTime}} m
+                        </span>
+                    </li>
+                    <li class="list-group-item bg-light">
+                        <i class="fa-solid fa-money-bill-1"></i> Box Office
+                        <span class="badge rounded-pill bg-secondary">
+                            {{movieDetails.revenue | currency:'USD' : 'symbol' : '1.0-0'}}
+                        </span>
+                    </li>
+                    <li class="list-group-item bg-light">
+                        <i class="fa-solid fa-dollar-sign"></i> Budget
+                        <span class="badge rounded-pill bg-secondary">
+                            {{movieDetails.budget | currency: 'USD' : 'symbol' : '1.0-0'}}
+                        </span>
+                    </li>
+                    <li class="list-group-item bg-light">
+                        <a href="@Model.ImdbUrl" class="text-reset mx-2"><i class="fa-brands fa-imdb"></i></a>
+                        <a href="@Model.TmdbUrl" class="text-reset mx-2"><i class="fa-solid fa-share-from-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Trailers  -->
+            <div>
+                <h5 class="border-bottom-0">TRAILERS</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-light my-2" *ngFor="let trailer of movieDetails.trailers">
+                        <a href="{{trailer.trailerUrl}}" class="text-decoration-none text-reset">
+                            <i class="fa-brands fa-youtube"></i> <span class="text-muted">{{trailer.name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <!-- Movie Casts -->
+            <div class="w-75" style="padding-left: 40px;">
+                <h5 class="border-bottom-0">CAST</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex my-2" *ngFor="let cast of movieDetails.casts">
+                        <div class="flex-shrink-1">
+                            <a [routerLink]="['/cast-details', cast.id]">
+                                <img src="{{cast.profilePath}}" class="img-fluid" alt="{{cast.name}}" title="{{cast.name}}" width="30%"/>
+                            </a>
+                        </div>
+                        <div class="w-100">
+                            <a [routerLink]="['/cast-details', cast.id]" class="text-decoration-none text-reset">
+                                {{cast.name}}
+                            </a>
+                        </div>
+                        <div class="w-100">
+                            {{cast.character}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Review Modal -->
+<ng-template let-modal #reviewModal id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <form class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="reviewModalLabel">Rate this movie</h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+        </div>
+        <div class="modal-body">
+            <select class="form-select rating mb-3" asp-for="@rating" aria-label="Default select example">
+                <option selected>Your Rating</option>
+                
+                <option value="{{i+1}}" *ngFor="let num of [].constructor(10); index as i">{{i+1}}</option>
+                    
+            </select>
+
+            <div class="form-floating mb-3">
+                <textarea asp-for="@reviewText" class="form-control reviewText" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label asp-for="@reviewText">Write your comments</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.close()">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</ng-template>
+
+<!-- Buy Modal -->
+<ng-template let-modal #buyModal id="buyModal">
+    <form class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="buyModalLabel">Purchase</h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Title: <b>{{movieDetails.title}}</b></li>
+                    <li class="list-group-item">Price: $<b>{{movieDetails.price | number:"1.2-2"}}</b></li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+            <button type="submit" class="btn btn-primary">Purchase</button>
+        </div>
+    </form>
+</ng-template>

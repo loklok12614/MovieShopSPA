@@ -1,0 +1,26 @@
+<div class="container bg-white">
+    <div class="alert alert-success" role="alert" *ngIf="deleteFlag">
+        Genre deleted
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let g of genres; index as i">
+                <td>{{i+1}}</td>
+                <td>{{g.id}}</td>
+                <td>{{g.name}}</td>
+                <td><input type="button" class="btn btn-link" value="Add" [routerLink]="'/add-genre'" /> &ensp; &ensp;  <input type="button" class="btn btn-link" value="Delete" (click)="'deleteGenre({{g.id}})'"/></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

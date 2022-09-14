@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../Core/Services/movie.service';
-import { MovieModel } from '../Shared/Models/Movie';
+import { Movie } from '../Shared/Models/Movie';
 
 @Component({
   selector: 'app-movies',
@@ -9,14 +9,16 @@ import { MovieModel } from '../Shared/Models/Movie';
 })
 export class MoviesComponent implements OnInit {
 
-  movies!:MovieModel[];
+  movies!:Movie[]
+
+  isEmpty:boolean = true
+
   constructor(private movieService:MovieService) { }
 
   ngOnInit(): void {
-    this.movieService.getTopGrossingMovies().subscribe((m: MovieModel[]) => {
+    this.movieService.getTopGrossingMovies().subscribe((m: Movie[]) => {
       this.movies = m
-      console.log(this.movies)
+      this.isEmpty = this.movies.length == 0 && true
     })
   }
-
 }

@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    font-size: 12px;
+  }
+  
+  @media (min-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  }
+  
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  
+  body {
+    margin-bottom: 60px;
+  }
+  
+  .movie-details-banner-background{
+    left: 0;
+    width: 100%;
+    height: 320px;
+    background-size: cover;
+    filter: brightness(20%);
+  }
+  
+  .cast-details-banner-background{
+    left: 0;
+    width: 100%;
+    height: 320px;
+    background-size: cover;
+  }
+  
+  .movie-details{
+    max-height: 320px;
+  }
+  
+  .facts{
+    left: 0;
+    top: 0;
+  }
+  
+  .nav-item{
+    border: 0.5px solid #00000000;
+  }
+  
+  .nav-item:hover{
+    border-bottom: 0.5px solid #93969a;
+  }
+  .nav-item:hover > .nav-link{
+    color: #93969a !important;
+  }

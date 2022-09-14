@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-2">
     <div class="container-fluid">
-        <a class="navbar-brand">Movie Shop</a>
+        <a class="navbar-brand" [routerLink]="''">Movie Shop</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,36 +8,32 @@
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item mx-2">
-                    <a class="nav-link text-light">Home</a>
+                    <a class="nav-link text-light" [routerLink]="''">Home</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link text-light">All Movies</a>
                 </li>
-                <!-- <li class="nav-item dropdown mx-2">
-                    @* <partial name="_GenreDropdown" model=""/> *@
-                    <a class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li ngbDropdown class="nav-item dropdown mx-2">
+                    <a ngbDropdownToggle class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Genres
                     </a>
-                    <ul class="dropdown-menu bg-dark">
-                        @foreach (var genre in AllGenres.Genres.Result)
-                        {
-                            <li>
-                                <a class="dropdown-item text-light" asp-controller="Movies" asp-action="GenreMovies" asp-route-id="@genre.Id">
-                                    @genre.Name
-                                </a>
-                            </li>
-                        }
+                    <ul ngbDropdownMenu class="dropdown-menu bg-dark" >
+                        <li *ngFor="let genre of genres">
+                            <a ngbDropdownItem class="dropdown-item text-light" [routerLink]="['genre', genre.id]">
+                                {{genre.name}}
+                            </a>
+                        </li>
                     </ul>
-                </li> -->
+                </li>
             </ul>
             
             <!-- <partial name="_LoginInfoPartial"/> -->
             <ul class="navbar-nav flex-grow-1 justify-content-end">
                 <li class="nav-item mx-2">
-                    <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Register">Join Us</a>
+                    <a class="nav-link text-light" [routerLink]="'/account/register'">Join Us</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Sign In</a>
+                    <a class="nav-link text-light" [routerLink]="'account/login'">Sign In</a>
                 </li>
             </ul> 
         </div>

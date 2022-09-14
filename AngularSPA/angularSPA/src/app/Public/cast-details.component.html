@@ -1,1 +1,88 @@
-<p>cast-details works!</p>
+<div class="">
+    <!-- Cast Banner -->
+    <div class="">
+        <div class="cast-details-banner-background position-absolute" style="background-color: #1e1e24">
+        </div>
+        <div class="movie-details position-relative">
+            <div class="row d-flex flex-wrap">
+                <div class="col-12 col-md-4 text-center text-md-end">
+                    <img src="{{castDetails.profilePath}}" class="image-fluid" alt="{{castDetails.name}}" title="{{castDetails.name}}" height="320px"/>
+                </div>
+            
+                <div class="col-12 col-md-6 text-start text-white px-5 py-1 d-none d-md-block">
+                    <h3>{{castDetails.name}}</h3>
+    
+                    <!-- Switch Directive for gender -->
+                    <div [ngSwitch]="castDetails.gender">
+                        <p *ngSwitchCase="0" class="text-muted" style="font-size: 12px">Not Applicable</p>
+                        <p *ngSwitchCase="1" class="text-muted" style="font-size: 12px">Female</p>
+                        <p *ngSwitchCase="2" class="text-muted" style="font-size: 12px">Male</p>
+                        <p *ngSwitchCase="3" class="text-muted" style="font-size: 12px">Non-binary</p>
+                        <p *ngSwitchCase="0" class="text-muted" style="font-size: 12px">Chooses not to identify</p>
+                    </div>
+    
+                    <div class="fs-6 mb-4">
+                        Mauris lobortis lorem id augue tincidunt, ac volutpat tortor ornare. Ut eu tortor accumsan, blandit tortor ac, lobortis nisi. Nam eget erat turpis. Proin sed dolor turpis. Quisque interdum sed sapien a finibus. Nam molestie sem vehicula, lacinia nisl a, sagittis tellus. Curabitur ultrices tincidunt turpis vitae venenatis. Mauris vitae ultricies urna. Integer sollicitudin mi faucibus cursus auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </div>
+                    
+                    <p class="text-muted">Born : March 05 1995 in Queens, New York, USA</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="w-100 text-start text-dark px-5 py-1 d-md-none">
+            <h3>{{castDetails.name}}</h3>
+                        
+            <!-- Switch Directive for gender -->
+            <div [ngSwitch]="castDetails.gender">
+                <p *ngSwitchCase="0" class="text-muted" style="font-size: 12px">Not Applicable</p>
+                <p *ngSwitchCase="1" class="text-muted" style="font-size: 12px">Female</p>
+                <p *ngSwitchCase="2" class="text-muted" style="font-size: 12px">Male</p>
+                <p *ngSwitchCase="3" class="text-muted" style="font-size: 12px">Non-binary</p>
+                <p *ngSwitchCase="0" class="text-muted" style="font-size: 12px">Chooses not to identify</p>
+            </div>
+    
+            <div class="fs-6 mb-4">
+                Mauris lobortis lorem id augue tincidunt, ac volutpat tortor ornare. Ut eu tortor accumsan, blandit tortor ac, lobortis nisi. Nam eget erat turpis. Proin sed dolor turpis. Quisque interdum sed sapien a finibus. Nam molestie sem vehicula, lacinia nisl a, sagittis tellus. Curabitur ultrices tincidunt turpis vitae venenatis. Mauris vitae ultricies urna. Integer sollicitudin mi faucibus cursus auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+            
+            <div class="text-muted">Born : March 05 1995 in Queens, New York, USA</div>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12 col-md-4 bg-light">
+
+            <!-- Cast Facts  -->
+            <div class="">
+                <h5>CAST FACTS</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-light">
+                        <a href="{{castDetails.tmdbUrl}}" class="text-reset mx-2"><i class="fa-solid fa-share-from-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            
+            <!-- Cast Movies  -->
+            <div class="w-75" style="padding-left: 40px;">
+                <h5 class="border-bottom-0">FILMOGRAPHY</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex my-2" *ngFor="let movie of castDetails.movies">
+                        <div class="flex-shrink-1 me-4">
+                            {{movie.releaseDate | date:"y"}}
+                        </div>
+                        <div class="w-100">
+                            <a [routerLink]="['/movie-details', movie.id]" class="text-decoration-none text-reset">
+                                {{movie.title}}
+                            </a>
+                        </div>
+                        <div class="w-100">
+                           {{movie.character}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
