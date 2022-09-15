@@ -13,11 +13,11 @@ export class MovieService {
   constructor(private httpClient:HttpClient) { }
 
   getTopGrossingMovies():Observable<Movie[]>{
-    return this.httpClient.get<Movie[]>("https://localhost:7246/api/Movies/top-grossing")
+    return this.httpClient.get<Movie[]>("https://lokmovieshopapi.azurewebsites.net/api/Movies/top-grossing")
   }
 
   getMovieDetails(movieId:number):Observable<MovieDetails>{
-    return this.httpClient.get<MovieDetails>(`https://localhost:7246/api/Movies/details/${movieId}`)
+    return this.httpClient.get<MovieDetails>(`https://lokmovieshopapi.azurewebsites.net/api/Movies/details/${movieId}`)
   }
 
   getMoviesByGenre(genreId:number){

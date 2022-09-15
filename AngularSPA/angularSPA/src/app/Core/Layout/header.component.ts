@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
     this.genreService.getAllGenres().subscribe((g:Genre[]) => {
       this.genres = g
       this.isGenresEmpty = this.genres.length == 0 && true
-      console.log(this.genres)
     })
   }
 

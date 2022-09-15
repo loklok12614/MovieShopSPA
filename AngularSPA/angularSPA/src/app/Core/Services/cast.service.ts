@@ -14,6 +14,6 @@ export class CastService {
   constructor(private httpClient:HttpClient) { }
 
   getCastDetails(castId:number):Observable<CastDetails>{
-    return this.httpClient.get<CastDetails>(`https://localhost:7246/api/Cast/details/${castId}`)
+    return this.httpClient.get<CastDetails>(`https://lokmovieshopapi.azurewebsites.net/api/Cast/details/${castId}`)
   }
 }

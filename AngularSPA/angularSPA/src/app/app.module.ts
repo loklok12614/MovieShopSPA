@@ -12,7 +12,7 @@ import { MoviesComponent } from './Public/movies.component';
 import { GenresComponent } from './Public/genres.component';
 
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @NgModule({
@@ -31,7 +31,9 @@ import { RouterLink } from '@angular/router';
     SharedModule,
     HttpClientModule,
     FormsModule,
-    RouterLink
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

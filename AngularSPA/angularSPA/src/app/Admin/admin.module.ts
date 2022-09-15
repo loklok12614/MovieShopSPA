@@ -9,6 +9,7 @@ import { AddGenreComponent } from './add-genre.component';
 import { AddCastComponent } from './add-cast.component';
 import { AllGenresComponent } from './all-genres.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

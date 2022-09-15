@@ -1,1 +1,80 @@
-<p>register works!</p>
+<div class="container">
+    <div class="row w-100 p-5">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Register</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="alert alert-danger m-2" role="alert" *ngIf="registerError">
+                        {{registerErrorMessage}}
+                    </div>
+
+                    <form class="form d-flex flex-column" [formGroup]="registerForm" (submit)="register()">
+                        <div class="form-group mb-2">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" name="firstName" formControlName="firstName" />
+                            <span class="text-danger" *ngIf="(RegisterFormControl['firstName'].touched || submitted) && (RegisterFormControl['firstName'].errors?.['required'])">
+                                First Name is required
+                            </span>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" formControlName="lastName" />
+                            <span class="text-danger" *ngIf="(RegisterFormControl['lastName'].touched || submitted) && (RegisterFormControl['lastName'].errors?.['required'])">
+                                Last Name is required
+                            </span>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" formControlName="email" />
+                            <span class="text-danger" *ngIf="(RegisterFormControl['email'].touched || submitted) && (RegisterFormControl['email'].errors?.['required'])">
+                                Email address is required
+                            </span>
+                            <span class="text-danger" *ngIf="(RegisterFormControl['email'].touched || submitted) && (RegisterFormControl['email'].errors?.['email'])">
+                                Please enter a valid email
+                            </span>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" formControlName="password" />
+                            <span class="text-danger" *ngIf="(RegisterFormControl['password'].touched || submitted) && (RegisterFormControl['password'].errors?.['required'])">
+                                Password is required
+                            </span>
+                            <span class="text-danger" *ngIf="(RegisterFormControl['password'].touched || submitted) && (RegisterFormControl['password'].errors?.['invalidPassword'])">
+                                Password must include a minimum of 8 characters. <br>
+                                Password must contain at least one Uppercase letter. <br>
+                                Password must contain at least one Lowercase letter. <br>
+                                Password must contain at least one Number. <br>
+                            </span>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" />
+                            <span class="text-danger" *ngIf="(RegisterFormControl['confirmPassword'].touched || submitted) && (RegisterFormControl['confirmPassword'].errors?.['required'])">
+                                Please confirm your password
+                            </span>
+                            <span class="text-danger" *ngIf="(RegisterFormControl['confirmPassword'].touched || submitted) && (RegisterFormControl['confirmPassword'].errors?.['passwordMismatch'])">
+                                Passwords do not match
+                            </span>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="dob">Date Of Birth</label>
+                            <input type="date" class="form-control" name="dob" formControlName="dob" />
+                            <span class="text-danger" *ngIf="(RegisterFormControl['dob'].touched || submitted) && (RegisterFormControl['dob'].errors?.['required'])">
+                                Date Of Birth is required
+                            </span>
+                        </div>
+
+                        <div class="form-group my-4 d-flex">
+                            <span>Already a member? Sign in <a [routerLink]="['/account/login']">here</a>.</span>
+                            <button type="submit" class="btn btn-primary ms-auto">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
