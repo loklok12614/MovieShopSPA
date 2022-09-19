@@ -60,7 +60,10 @@ export class RegisterComponent implements OnInit {
       this.registerData.dateOfBirth = this.RegisterFormControl['dob'].value
       this.accountService.register(this.registerData).subscribe(
         (response:boolean) => { //Success callback
-          this.router.navigateByUrl('/account/login')
+          this.submitted = true
+          setTimeout(() => {
+            this.router.navigateByUrl('/account/login')
+          }, 2000)
       },
         (err: HttpErrorResponse) => { //Error callback
           this.registerError = true

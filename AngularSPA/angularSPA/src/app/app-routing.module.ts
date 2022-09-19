@@ -4,6 +4,8 @@ import { MoviesComponent } from './Public/movies.component';
 import { GenresComponent } from './Public/genres.component';
 import { MovieDetailsComponent } from './Public/movie-details.component'
 import { CastDetailsComponent } from './Public/cast-details.component'
+import { AuthGuard } from './Core/Guards/auth.guard';
+import { AdminGuard } from './Core/Guards/admin.guard';
 
 const routes: Routes = [
   {path: "", component: MoviesComponent},
@@ -13,8 +15,8 @@ const routes: Routes = [
 
   // Lazy loading
   {path: "account", loadChildren: () => import("./Account/account.module").then(mod => mod.AccountModule)},
-  {path: "user", loadChildren: () => import("./User/user.module").then(mod => mod.UserModule)},
-  {path: "admin", loadChildren: () => import("./Admin/admin.module").then(mod => mod.AdminModule)}
+  {path: "user", loadChildren: () => import("./User/user.module").then(mod => mod.UserModule), canActivateChild: [AuthGuard]},
+  {path: "admin", loadChildren: () => import("./Admin/admin.module").then(mod => mod.AdminModule), canLoad: [AdminGuard]}
 ];
 
 @NgModule({

@@ -27,13 +27,30 @@
                 </li>
             </ul>
             
-            <!-- <partial name="_LoginInfoPartial"/> -->
-            <ul class="navbar-nav flex-grow-1 justify-content-end">
+            <!-- Not Logged In -->
+            <ul class="navbar-nav flex-grow-1 justify-content-end" *ngIf="!loggedIn">
                 <li class="nav-item mx-2">
                     <a class="nav-link text-light" [routerLink]="'/account/register'">Join Us</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link text-light" [routerLink]="'account/login'">Sign In</a>
+                </li>
+            </ul> 
+
+            <!-- Logged in -->
+            <ul class="navbar-nav flex-grow-1 justify-content-end" *ngIf="loggedIn">
+                <li ngbDropdown class="nav-item dropdown mx-2">
+                    <a ngbDropdownToggle class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i> {{user.given_name}}
+                    </a>
+                    <ul ngbDropdownMenu class="dropdown-menu bg-dark">
+                        <li><a class="dropdown-item text-light" asp-controller="User" asp-action="Purchases"><i class="fa-solid fa-video"></i> Purchases</a></li>
+                        <li><a class="dropdown-item text-light" asp-controller="User" asp-action="Favorites"><i class="fa-solid fa-heart"></i> Favorites</a></li>
+                        <li><a class="dropdown-item text-light" asp-controller="User" asp-action="EditProfile"><i class="fa-solid fa-address-card"></i> View Profile</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-light" [routerLink]="'/'" role="button" (click)="logout()">Log Out</a>
                 </li>
             </ul> 
         </div>

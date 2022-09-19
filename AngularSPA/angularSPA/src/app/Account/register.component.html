@@ -12,6 +12,10 @@
                         {{registerErrorMessage}}
                     </div>
 
+                    <div class="alert alert-success m-2" role="alert" *ngIf="submitted">
+                        You Are Good To Go ! Enjoy !
+                    </div>
+
                     <form class="form d-flex flex-column" [formGroup]="registerForm" (submit)="register()">
                         <div class="form-group mb-2">
                             <label for="firstName">First Name</label>
