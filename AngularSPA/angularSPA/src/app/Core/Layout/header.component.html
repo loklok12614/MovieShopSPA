@@ -1,17 +1,17 @@
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-2">
     <div class="container-fluid">
         <a class="navbar-brand" [routerLink]="''">Movie Shop</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" [ngbCollapse]="isCollapsed">
             <ul class="navbar-nav flex-grow-1">
                 <li class="nav-item mx-2">
                     <a class="nav-link text-light" [routerLink]="''">Home</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link text-light">All Movies</a>
+                    <a class="nav-link text-light" [routerLink]="'all-movies'">All Movies</a>
                 </li>
                 <li ngbDropdown class="nav-item dropdown mx-2">
                     <a ngbDropdownToggle class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false">

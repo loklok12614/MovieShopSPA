@@ -6,9 +6,11 @@ import { MovieDetailsComponent } from './Public/movie-details.component'
 import { CastDetailsComponent } from './Public/cast-details.component'
 import { AuthGuard } from './Core/Guards/auth.guard';
 import { AdminGuard } from './Core/Guards/admin.guard';
+import { AllMoviesComponent } from './Public/all-movies.component';
 
 const routes: Routes = [
   {path: "", component: MoviesComponent},
+  {path: "all-movies", component: AllMoviesComponent},
   {path: "genre/:genreId", component: GenresComponent},
   {path: "movie-details/:movieId", component: MovieDetailsComponent},
   {path: "cast-details/:castId", component: CastDetailsComponent},

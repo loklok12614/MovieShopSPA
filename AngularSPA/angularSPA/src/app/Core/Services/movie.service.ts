@@ -25,4 +25,13 @@ export class MovieService {
     const params = new HttpParams().set('pageSize', pageSize).set('page', page)
     return this.httpClient.get<PagedObject<Movie>>(`https://lokmovieshopapi.azurewebsites.net/api/Movies/genre/${genreId}`, {params})
   }
+
+  getAllMovies(pageSize:number, page:number):Observable<PagedObject<Movie>>{
+    // const params = new HttpParams().set('pageSize', pageSize)
+    const params = {
+      'pageSize': pageSize,
+      'page': page
+    }
+    return this.httpClient.get<PagedObject<Movie>>('https://lokmovieshopapi.azurewebsites.net/api/Movies', {params})
+  }
 }

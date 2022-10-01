@@ -7,7 +7,6 @@ import { FavoritesComponent } from '../User/favorites.component';
 import { ReviewsComponent } from '../User/reviews.component';
 import { EditProfileComponent } from '../User/edit-profile.component';
 
-
 @NgModule({
   declarations: [
     PurchasesComponent,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { RouterLink } from '@angular/router';
 import { AdminGuard } from './Core/Guards/admin.guard';
 import { AuthGuard } from './Core/Guards/auth.guard';
 import { JwtAdderInterceptor } from './Core/Interceptors/jwt-adder.interceptor';
+import { AllMoviesComponent } from './Public/all-movies.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { JwtAdderInterceptor } from './Core/Interceptors/jwt-adder.interceptor';
     MovieDetailsComponent,
     CastDetailsComponent,
     MoviesComponent,
-    GenresComponent
+    GenresComponent,
+    AllMoviesComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { JwtAdderInterceptor } from './Core/Interceptors/jwt-adder.interceptor';
     FormsModule,
     RouterLink,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbCollapseModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtAdderInterceptor, multi: true },

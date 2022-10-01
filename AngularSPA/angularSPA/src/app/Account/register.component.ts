@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
       },
         (err: HttpErrorResponse) => { //Error callback
           this.registerError = true
-          this.registerErrorMessage = err.error
+          this.registerErrorMessage = err.error.Message
         }
       )
     }

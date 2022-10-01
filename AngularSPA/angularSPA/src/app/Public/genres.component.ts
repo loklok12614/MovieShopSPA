@@ -18,16 +18,16 @@ export class GenresComponent implements OnInit {
   constructor(private activatedRoute:ActivatedRoute, private movieService:MovieService) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( (params:any) => {
-      const genreId = params['genreId']
-      const pageSize = (params['pageSize']) ? parseInt(params['pageSize']) : 30
-      const page = 'page' in params ? parseInt(params['page']) : 1
-      console.log(page)
-      this.movieService.getMoviesByGenre(genreId, pageSize, page).subscribe((pagedData: PagedObject<Movie>) => {
-        this.pagedMovies = pagedData
-        this.isEmpty = this.pagedMovies.data.length == 0 && true
-      })
-    })
+    // this.activatedRoute.params.subscribe( (params:any) => {
+    //   const genreId = params['genreId']
+    //   const pageSize = (params['pageSize']) ? parseInt(params['pageSize']) : 30
+    //   const page = 'page' in params ? parseInt(params['page']) : 1
+    //   console.log(page)
+    //   this.movieService.getMoviesByGenre(genreId, pageSize, page).subscribe((pagedData: PagedObject<Movie>) => {
+    //     this.pagedMovies = pagedData
+    //     this.isEmpty = this.pagedMovies.data.length == 0 && true
+    //   })
+    // })
 
     combineLatest([this.activatedRoute.params, this.activatedRoute.queryParams])
         .subscribe(([params, qparams]:[Params, Params]) => {

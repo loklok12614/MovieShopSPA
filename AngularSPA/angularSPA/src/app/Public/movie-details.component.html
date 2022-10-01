@@ -1,5 +1,8 @@
 <div class="">
     <!-- <partial name="_MovieDetailsBanner" model="@Model" class="mb-2"/> -->
+    <div class="alert alert-danger m-2" role="alert" *ngIf="purchaseError && purchaseErrorMessage">
+        {{purchaseErrorMessage}}
+    </div>
     <div class="">
         <div class="movie-details-banner-background position-absolute" style="background-image: url({{movieDetails.backdropUrl}})">
         </div>
@@ -41,8 +44,12 @@
                         <i class="fa-regular fa-pen-to-square"></i> REVIEW
                     </button>
 
-                    <button type="button" (click)="open(buyModal)" class="w-100 btn btn-sm bg-light mb-4 py-0">
+                    <button type="button" (click)="open(buyModal)" class="w-100 btn btn-sm bg-light mb-4 py-0" *ngIf="!isMoviePurchased">
                         BUY ${{movieDetails.price | number: "1.2-2"}}
+                    </button>
+
+                    <button type="button" class="w-100 btn btn-sm bg-light mb-4 py-0" *ngIf="isMoviePurchased">
+                        PLAY
                     </button>
                     
                     <!-- @{
@@ -108,8 +115,12 @@
                 <i class="fa-regular fa-pen-to-square"></i> REVIEW
             </button>
 
-            <button type="button" (click)="open(buyModal)" class="w-100 btn bg-dark text-white mb-4 py-0">
+            <button type="button" (click)="open(buyModal)" class="w-100 btn bg-dark text-white mb-4 py-0" *ngIf="!isMoviePurchased">
                 BUY ${{movieDetails.price | number: "1.2-2"}}
+            </button>
+
+            <button type="button" class="w-100 btn bg-dark text-white mb-4 py-0" *ngIf="isMoviePurchased">
+                PLAY
             </button>
             
             <!-- @{
@@ -268,7 +279,47 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
-            <button type="submit" class="btn btn-primary">Purchase</button>
+            <button type="button" class="btn btn-primary" (click)="purchase()">Purchase</button>
         </div>
     </form>
+</ng-template>
+
+<!-- Purchase Success Modal -->
+<ng-template let-modal #purchaseSuccessModal id="purchaseSuccessModal">
+    <div class="modal-content show">
+        <div class="modal-header">
+            <h5 class="modal-title" id="purchaseModalLabel">Purchase Successful</h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-3">
+                    <img src="{{movieDetails.posterUrl}}" class="img-fluid" alt="{{movieDetails.title}}" title="{{movieDetails.title}}"/>
+                </div>
+                
+                <div class="col-9">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-film"></i><b> {{movieDetails.title}}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-money-bill-1"></i> Price
+                            <span class="badge rounded-pill bg-secondary">
+                                ${{movieDetails.price | number: "1.2-2"}}
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-circle-check"></i> Purchase Number
+                            <span class="badge rounded-pill bg-secondary">
+                                {{purchaseSuccessDetails.purchasedNumber}}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+        </div>
+    </div>
 </ng-template>

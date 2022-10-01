@@ -11,6 +11,8 @@ import { AccountService } from '../Services/account.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public isCollapsed = true
+
   constructor(private genreService:GenreService, private accountService:AccountService) { }
 
   loggedIn:boolean = false
