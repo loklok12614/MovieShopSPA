@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt'
 import { Login } from 'src/app/Shared/Models/Login';
 import { Register } from 'src/app/Shared/Models/Register';
 import { User } from 'src/app/Shared/Models/User';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -14,7 +15,9 @@ import { User } from 'src/app/Shared/Models/User';
 })
 export class AccountService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private router:Router) { }
+
+  public redirectUrl: string
 
   private currentUserSubject = new BehaviorSubject<User>({} as User)
   public currentUser = this.currentUserSubject.asObservable()
@@ -27,12 +30,19 @@ export class AccountService {
   login(loginData:Login):Observable<boolean>{
     return this.httpClient.post<boolean>("https://lokmovieshopapi.azurewebsites.net/api/account/login", loginData)
     .pipe(map((response:any) => {
-      if(response){
         localStorage.setItem('token', response.token)
         this.getUserInfoFromToken()
-        return true
-      }
-      return false
+
+        if(this.redirectUrl){
+          console.log(`Service url: ${this.redirectUrl}`)
+          this.router.navigate([this.redirectUrl])
+          this.redirectUrl = ""
+          return true
+        }
+        else{
+          this.router.navigate(['/'])
+          return true
+        }
     }))
   }
 

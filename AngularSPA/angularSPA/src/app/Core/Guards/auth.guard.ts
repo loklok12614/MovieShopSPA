@@ -16,15 +16,33 @@ export class AuthGuard implements CanActivateChild {
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      this.accountService.isLoggedIn.subscribe((isLoggedIn:boolean) => {
-        this.loggedIn = isLoggedIn
-      })
+      // this.accountService.isLoggedIn.subscribe((isLoggedIn:boolean) => {
+      //   this.loggedIn = isLoggedIn
+      // })
 
-      if( localStorage.getItem('token') == null || !this.loggedIn ){
-        return this.router.parseUrl('account/login') //if not authenticated, redirrect to login
-        // return false
-      }
+      // if( localStorage.getItem('token') == null || !this.loggedIn ){
+      //   return this.router.parseUrl('account/login') //if not authenticated, redirrect to login
+      //   // return false
+      // }
+      // return true
+      let url: string = state.url
+      console.log(url)
+
+      return this.checkLogin(url)
+  }
+
+  checkLogin(url: string): boolean{
+    this.accountService.isLoggedIn.subscribe((isLoggedIn:boolean) => {
+      this.loggedIn = isLoggedIn
+    })
+
+    if( localStorage.getItem('token') != null || this.loggedIn ){
       return true
+    }
+    
+    this.accountService.redirectUrl = url
+    this.router.navigate(['/account/login']) //if not authenticated, redirrect to login
+    return false
   }
   
 }

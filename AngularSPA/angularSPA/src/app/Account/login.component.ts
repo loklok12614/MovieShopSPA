@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       this.loginData.password = this.LoginFormControl['password'].value
       this.accountService.login(this.loginData).subscribe(
         (response:boolean) => { //Success callback
-        this.router.navigateByUrl('/')
+        // Redirecting handled in accountService
       },
         (err: HttpErrorResponse) => { //Error callback
           this.loginError = true
